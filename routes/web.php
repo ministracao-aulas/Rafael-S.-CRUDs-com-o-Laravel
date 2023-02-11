@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\NomeController;
@@ -72,4 +73,12 @@ Route::prefix('nomes')->group(function () {
         'delete',
     ], '/users/{userId}/delete', [UserController::class, 'delete'])->name('users.delete');
     */
+});
+
+Route::prefix('forms')->name('forms.')->group(function () {
+    Route::get('contact', [ContactFormController::class, 'contactForm'])->name('contact');
+    Route::post('contact', [ContactFormController::class, 'contactFormReceiver']);
+
+    Route::get('feedback', [ContactFormController::class, 'feedbackForm'])->name('feedback');
+    Route::post('feedback', [ContactFormController::class, 'feedbackFormReceiver']);
 });
